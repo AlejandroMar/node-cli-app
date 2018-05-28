@@ -17,16 +17,16 @@ const command = process.argv[2]
 
  if(command === 'add'){
     notes.addNote(argv.title, argv.body)
-}/* else if(command === 'list'){
-    console.log('listing all notes');
+} else if(command === 'list'){
+    notes.getAll()
 }else if(command === 'read'){
-    console.log('reading note');
+    notes.readNote(argv.title, argv.body);
 }else if(command === 'remove'){
-    console.log('removing note');
+    notes.removeNote(argv.title, argv.body)
 }else if(command === undefined){
     console.log('please write an argument');
 }else{
     console.log('command not found');
     
 } 
- */
+ 
