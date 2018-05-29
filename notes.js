@@ -1,7 +1,7 @@
 console.log('starting note.js');
 const fs = require('fs');
 
-
+//ADD NOTES FUNCTION
 const addNote = (title, body) => {
     const note = {
         title: title,
@@ -12,15 +12,11 @@ const addNote = (title, body) => {
     }
     const fetchedNotes = JSON.parse(fs.readFileSync('notes-data.json'));
 
-    const existingNote = fetchedNotes.filter(note => note.title === title)
-        .map(note => note.title);
-
-
-
-    if (!existingNote.includes(title)) {
+    const duplicateNotes = fetchedNotes.filter(note => note.title === title)
+        
+    if (duplicateNotes.length === 0) {
         fetchedNotes.push(note);
-        const noteToString = JSON.stringify(fetchedNotes);
-        fs.writeFileSync('notes-data.json', noteToString);
+        fs.writeFileSync('notes-data.json', JSON.stringify(fetchedNotes));
         console.log('Item added: ', `title: ${title}`, `body: ${body}`);
     } else {
         console.log('the note already exist');
