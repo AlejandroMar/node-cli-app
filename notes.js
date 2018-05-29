@@ -8,20 +8,20 @@ const getAll = () => {
     console.log('Listing all tasks');
 };
 
-const readNote = (title, body) => {
+const getNote = (title, body) => {
     console.log('reading node: ', title, body);
     
 };
 
 const removeNote = (title, body) => {
-    console.log('removing note: ', title, body);
+    console.log('removing note: ', title);
 };
 
 
-
+//it's very important to export the functions and functionality that I need in other modules
 module.exports = {
     addNote,
     getAll,
-    readNote,
+    getNote,
     removeNote
 }
