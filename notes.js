@@ -3,21 +3,31 @@ const fs = require('fs');
 
 
 const addNote = (title, body) => {
-    let notes = []
     const note = {
         title: title,
         body: body
     };
-    if (!fs.existsSync('./notes-data.json')){
+    if (!fs.existsSync('./notes-data.json')) {
         fs.writeFileSync('notes-data.json', '[]');
-    } 
-    const notesString = fs.readFileSync('notes-data.json');
-    notes = JSON.parse(notesString)
-    notes.push(note)
-    const noteToString = JSON.stringify(notes);
-    fs.writeFileSync('notes-data.json', noteToString);
-    console.log('Item added: ', `title: ${title}`, `body: ${body}`);
-    
+    }
+    const fetchedNotes = JSON.parse(fs.readFileSync('notes-data.json'));
+
+    const existingNote = fetchedNotes.filter(note => note.title === title)
+        .map(note => note.title);
+
+
+
+    if (!existingNote.includes(title)) {
+        fetchedNotes.push(note);
+        const noteToString = JSON.stringify(fetchedNotes);
+        fs.writeFileSync('notes-data.json', noteToString);
+        console.log('Item added: ', `title: ${title}`, `body: ${body}`);
+    } else {
+        console.log('the note already exist');
+    }
+
+
+
 };
 
 const getAll = () => {
