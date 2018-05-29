@@ -1,29 +1,36 @@
 console.log('starting note.js');
 const fs = require('fs');
 
+const fetchedNotes = () => {
+    if (!fs.existsSync('./notes-data.json')) {
+        fs.writeFileSync('notes-data.json', '[]');
+    }
+   return JSON.parse(fs.readFileSync('notes-data.json'));
+};
+
+const saveNotes = (notesArr) => {
+    fs.writeFileSync('notes-data.json', JSON.stringify(notesArr));
+}
+
+
 //ADD NOTES FUNCTION
 const addNote = (title, body) => {
+
+    const notes = fetchedNotes();
+
     const note = {
         title: title,
         body: body
     };
-    if (!fs.existsSync('./notes-data.json')) {
-        fs.writeFileSync('notes-data.json', '[]');
-    }
-    const fetchedNotes = JSON.parse(fs.readFileSync('notes-data.json'));
+   
 
-    const duplicateNotes = fetchedNotes.filter(note => note.title === title)
+    const duplicateNotes = notes.filter(note => note.title === title);
         
     if (duplicateNotes.length === 0) {
-        fetchedNotes.push(note);
-        fs.writeFileSync('notes-data.json', JSON.stringify(fetchedNotes));
-        console.log('Item added: ', `title: ${title}`, `body: ${body}`);
-    } else {
-        console.log('the note already exist');
-    }
-
-
-
+        notes.push(note);
+        saveNotes(notes);
+        return note;
+    } 
 };
 
 const getAll = () => {

@@ -15,7 +15,13 @@ const command = argv._[0];
 
 
 if (command === 'add') {
-    notes.addNote(argv.title, argv.body)
+    const note = notes.addNote(argv.title, argv.body);
+    if(note){
+        console.log('Item added: ', `title: ${note.title}`, `body: ${note.title}`);
+    }else {
+        console.log('The note already exist');
+        
+    }
 } else if (command === 'list') {
     notes.getAll()
 } else if (command === 'read') {
