@@ -17,17 +17,18 @@ const command = argv._[0];
 if (command === 'add') {
     const note = notes.addNote(argv.title, argv.body);
     if(note){
-        console.log('Item added: ', `title: ${note.title}`, `body: ${note.title}`);
+        console.log('note added: ', `title: ${note.title}`, `body: ${note.body}`);
     }else {
-        console.log('The note already exist');
-        
+        console.log('The note already exist'); 
     }
 } else if (command === 'list') {
     notes.getAll()
 } else if (command === 'read') {
     notes.getNote(argv.title, argv.body);
 } else if (command === 'remove') {
-    notes.removeNote(argv.title)
+    const removedNote = notes.removeNote(argv.title);
+    const msg = removedNote ? `Note: ${argv.title}, was removed` : `No items were removed, note: ${argv.title} not found`;
+    console.log(msg);
 } else if (command === undefined) {
     console.log('please write an argument');
 } else {

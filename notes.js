@@ -43,9 +43,11 @@ const getNote = (title, body) => {
 };
 
 const removeNote = (title, body) => {
-    console.log('removing note: ', title);
+    let notes = fetchedNotes();
+    filteredNotes = notes.filter(note => note.title !== title)
+    saveNotes(filteredNotes)
+    return notes.length !== filteredNotes.length;
 }
-
 
 //it's very important to export the functions and functionality that I need in other modules
 module.exports = {
