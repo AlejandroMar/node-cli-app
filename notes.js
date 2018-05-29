@@ -37,9 +37,10 @@ const getAll = () => {
     console.log('Listing all tasks');
 };
 
-const getNote = (title, body) => {
-    console.log('reading node: ', title, body);
-
+const getNote = (title) => {
+    let notes = fetchedNotes();
+    filteredNotes = notes.filter(note => note.title === title)
+    return filteredNotes[0]
 };
 
 const removeNote = (title, body) => {
