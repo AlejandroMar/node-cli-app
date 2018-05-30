@@ -6,29 +6,30 @@ const yargs = require('yargs');
 //personal modules
 const notes = require('./notes');
 
-const titleOption = {
+// notes options for yargs commands
+const titleOptions = {
     describe: 'Title of note',
     demand: true,
     alias: 't'
 };
 
-const bodyOption = {
+const bodyOptions = {
     describe: `Note's description`,
-    demand:true,
+    demand: true,
     alias: 'b'
 };
 
 const argv = yargs
     .command('add', 'Add new note', {
-       title: titleOption,
-       body: bodyOption
+        title: titleOptions,
+        body: bodyOptions
     })
     .command('list', 'List all notes')
     .command('read', 'Get a note', {
-        title: titleOption,
+        title: titleOptions,
     })
     .command('remove', 'Remove a note', {
-        title: titleOption,
+        title: titleOptions,
     })
 
     .help()
