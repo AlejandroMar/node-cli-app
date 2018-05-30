@@ -34,7 +34,7 @@ const addNote = (title, body) => {
 };
 
 const getAll = () => {
-    console.log('Listing all tasks');
+    return fetchedNotes();
 };
 
 const getNote = (title) => {
@@ -51,7 +51,8 @@ const removeNote = (title, body) => {
 };
 
 const logNote = (note) => {
-    console.log('----');
+    debugger;
+    console.log('-------');
     console.log( `Note title: ${note.title}`);
     console.log(`Note body: ${note.body}`);  
 };

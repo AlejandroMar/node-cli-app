@@ -4,11 +4,10 @@ const fs = require('fs');
 const _ = require('lodash');
 const yargs = require('yargs');
 
+//personal modules
 const notes = require('./notes');
 
 const argv = yargs.argv;
-
-//console.log(argv);
 
 const command = argv._[0];
 
@@ -23,7 +22,16 @@ if (command === 'add') {
         console.log('The note already exist'); 
     }
 } else if (command === 'list') {
-    notes.getAll()
+    //I most not give the same name to the variable as to the method;
+     const allNotes =  notes.getAll()    
+     if(allNotes){
+        console.log(`Printing ${allNotes.length} note(s)`);
+        allNotes.forEach(note => {
+            notes.logNote(note)
+        });  
+    }else{
+        console.log('There are no notes'); 
+    } 
 } else if (command === 'read') {
     const note = notes.getNote(argv.title);
    if(note){
@@ -38,7 +46,7 @@ if (command === 'add') {
     const msg = removedNote ? `Note: ${argv.title}, was removed` : `No items were removed, note: ${argv.title} not found`;
     console.log(msg);
 } else if (command === undefined) {
-    console.log('please write an argument');
+    console.log('Please write an argument');
 } else {
-    console.log('command not found');
+    console.log('Command not found');
 }
