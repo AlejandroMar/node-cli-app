@@ -6,7 +6,21 @@ const yargs = require('yargs');
 //personal modules
 const notes = require('./notes');
 
-const argv = yargs.argv;
+const argv = yargs
+    .command('add', 'Add new note', {
+        title:{
+            describe: 'Title of note',
+            demand: true,
+            alias: 't'
+        },
+        body:{
+            describe: `Note's description`,
+            demand:true,
+            alias: 'b'
+        }
+    })
+    .help()
+    .argv;
 
 const command = argv._[0];
 
