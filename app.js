@@ -1,4 +1,3 @@
-console.log('Starting app');
 
 const fs = require('fs');
 const _ = require('lodash');
@@ -15,32 +14,32 @@ const command = argv._[0];
 
 if (command === 'add') {
     const note = notes.addNote(argv.title, argv.body);
-    if(note){
+    if (note) {
         console.log('Note added');
         notes.logNote(note)
-    }else {
-        console.log('The note already exist'); 
+    } else {
+        console.log('The note already exist');
     }
 } else if (command === 'list') {
     //I most not give the same name to the variable as to the method;
-     const allNotes =  notes.getAll()    
-     if(allNotes){
+    const allNotes = notes.getAll()
+    if (allNotes) {
         console.log(`Printing ${allNotes.length} note(s)`);
         allNotes.forEach(note => {
             notes.logNote(note)
-        });  
-    }else{
-        console.log('There are no notes'); 
-    } 
+        });
+    } else {
+        console.log('There are no notes');
+    }
 } else if (command === 'read') {
     const note = notes.getNote(argv.title);
-   if(note){
-    console.log('Note found');
-    notes.logNote(note) 
-   }else{
-       console.log('Note not found');
-   }
-    
+    if (note) {
+        console.log('Note found');
+        notes.logNote(note)
+    } else {
+        console.log('Note not found');
+    }
+
 } else if (command === 'remove') {
     const removedNote = notes.removeNote(argv.title);
     const msg = removedNote ? `Note: ${argv.title}, was removed` : `No items were removed, note: ${argv.title} not found`;
