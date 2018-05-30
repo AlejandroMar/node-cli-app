@@ -39,21 +39,28 @@ const getAll = () => {
 
 const getNote = (title) => {
     let notes = fetchedNotes();
-    filteredNotes = notes.filter(note => note.title === title)
+    filteredNotes = notes.filter(note => note.title === title);
     return filteredNotes[0]
 };
 
 const removeNote = (title, body) => {
     let notes = fetchedNotes();
-    filteredNotes = notes.filter(note => note.title !== title)
+    filteredNotes = notes.filter(note => note.title !== title);
     saveNotes(filteredNotes)
     return notes.length !== filteredNotes.length;
-}
+};
+
+const logNote = (note) => {
+    console.log('----');
+    console.log( `Note title: ${note.title}`);
+    console.log(`Note body: ${note.body}`);  
+};
 
 //it's very important to export the functions and functionality that I need in other modules
 module.exports = {
     addNote,
     getAll,
     getNote,
-    removeNote
+    removeNote,
+    logNote
 }
