@@ -1,11 +1,11 @@
-console.log('starting note.js');
+
 const fs = require('fs');
 
 const fetchedNotes = () => {
     if (!fs.existsSync('./notes-data.json')) {
         fs.writeFileSync('notes-data.json', '[]');
     }
-   return JSON.parse(fs.readFileSync('notes-data.json'));
+    return JSON.parse(fs.readFileSync('notes-data.json'));
 };
 
 const saveNotes = (notesArr) => {
@@ -22,15 +22,15 @@ const addNote = (title, body) => {
         title: title,
         body: body
     };
-   
+
 
     const duplicateNotes = notes.filter(note => note.title === title);
-        
+
     if (duplicateNotes.length === 0) {
         notes.push(note);
         saveNotes(notes);
         return note;
-    } 
+    }
 };
 
 const getAll = () => {
@@ -53,8 +53,8 @@ const removeNote = (title, body) => {
 const logNote = (note) => {
     debugger;
     console.log('-------');
-    console.log( `Note title: ${note.title}`);
-    console.log(`Note body: ${note.body}`);  
+    console.log(`Note title: ${note.title}`);
+    console.log(`Note body: ${note.body}`);
 };
 
 //it's very important to export the functions and functionality that I need in other modules
